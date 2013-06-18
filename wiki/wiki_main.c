@@ -19,8 +19,7 @@ SExpression *getAST(const char *expr) {
 
   state = yy_scan_string(expr, scanner);
 
-  if (yyparse(&expression, scanner))
-  {
+  if (yyparse(&expression, scanner)) {
     // error parsing
     return NULL;
   }
@@ -52,7 +51,8 @@ int evaluate(SExpression *e) {
 
 int main(int argc, char **argv) {
   SExpression *e = NULL;
-  char test[]=" 4 + 2*10 + 3*( 5 + 1 )";
+  // char test[]=" 4 + 2*10 + 3*( 5 + 1 )";
+  char test[] = "(4 && 3) && 0";
   int result = 0;
 
   e = getAST(test);
