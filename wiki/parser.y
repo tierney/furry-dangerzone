@@ -9,7 +9,11 @@
 #include "parser.h"
 #include "lexer.h"
 
-int yyerror(yyscan_t scanner, SExpression **expression, const char *msg);
+static int yyerror(yyscan_t scanner,
+                   SExpression **expression,
+                   const char *msg) {
+  fprintf(stderr,"SPECIAL Error:%s \n",msg, (*expression)->string); return 0;
+}
 
 %}
 
@@ -31,8 +35,9 @@ typedef void* yyscan_t;
 %parse-param { yyscan_t scanner }
 
 %union {
-    int value;
-    SExpression *expression;
+  char *string;
+  int value;
+  SExpression *expression;
 }
 
 %left '+' TOKEN_PLUS
@@ -48,6 +53,7 @@ typedef void* yyscan_t;
 %token TOKEN_OR
 
 %token <value> TOKEN_NUMBER
+%token <string> TOKEN_STRING
 
 %type <expression> expr
 
@@ -64,6 +70,6 @@ expr
     | expr TOKEN_OR expr { $$ = createOperation( eOR, $1, $3 ); }
     | TOKEN_LPAREN expr TOKEN_RPAREN { $$ = $2; }
     | TOKEN_NUMBER { $$ = createNumber($1); }
+    | TOKEN_STRING { $$ = createString($1); }
     ;
-
 %%

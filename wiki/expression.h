@@ -8,8 +8,8 @@
 /**
  * @brief The operation type
  */
-typedef enum tagEOperationType
-{
+typedef enum tagEOperationType {
+  eSTRING,
     eVALUE,
     eMULTIPLY,
     ePLUS,
@@ -24,6 +24,7 @@ typedef struct tagSExpression {
     EOperationType type;///< type of operation
 
     int value;///< valid only when type is eVALUE
+  char* string;
     struct tagSExpression* left; ///< left side of the tree
     struct tagSExpression* right;///< right side of the tree
 }SExpression;
@@ -34,6 +35,8 @@ typedef struct tagSExpression {
  * @return The expression or NULL in case of no memory
  */
 SExpression* createNumber(int value);
+
+SExpression* createString(const char* string);
 
 /**
  * @brief It creates an operation

@@ -27,11 +27,14 @@ OR          "||"
 
 NUMBER      [0-9]+
 WS          [ \r\n\t]*
+STRING      [a-zA-Z0-9]+
 
 %%
 
 {WS}            { /* Skip blanks. */ }
 {NUMBER}        { sscanf(yytext, "%d", &yylval->value); return TOKEN_NUMBER; }
+
+{STRING}        { yylval->string = strdup(yytext); return TOKEN_STRING; }
 
 {MULTIPLY}      { return TOKEN_MULTIPLY; }
 {PLUS}          { return TOKEN_PLUS; }

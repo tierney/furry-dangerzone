@@ -38,6 +38,19 @@ SExpression* createNumber(int value) {
     return b;
 }
 
+SExpression* createString(const char *string) {
+    SExpression* b = allocateExpression();
+
+    if (b == NULL)
+        return NULL;
+
+    b->type = eSTRING;
+    b->string = string;
+
+    return b;
+}
+
+
 SExpression *createOperation(
     EOperationType type,
     SExpression *left,

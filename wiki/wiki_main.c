@@ -11,8 +11,7 @@ SExpression *getAST(const char *expr) {
   yyscan_t scanner;
   YY_BUFFER_STATE state;
 
-  if (yylex_init(&scanner))
-  {
+  if (yylex_init(&scanner)) {
     // couldn't initialize
     return NULL;
   }
@@ -33,6 +32,9 @@ SExpression *getAST(const char *expr) {
 
 int evaluate(SExpression *e) {
   switch (e->type) {
+    case eSTRING:
+      printf("String: %s\n", e->string);
+      return 1;
     case eVALUE:
       return e->value;
     case eMULTIPLY:
@@ -52,7 +54,7 @@ int evaluate(SExpression *e) {
 int main(int argc, char **argv) {
   SExpression *e = NULL;
   // char test[]=" 4 + 2*10 + 3*( 5 + 1 )";
-  char test[] = "(4 && 3) && 0";
+  char test[] = "4 + makeItHappen + hello";
   int result = 0;
 
   e = getAST(test);
