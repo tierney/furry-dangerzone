@@ -11,8 +11,7 @@
  * @brief Allocates space for expression
  * @return The expression or NULL if not enough memory
  */
-static SExpression* allocateExpression()
-{
+static SExpression* allocateExpression() {
     SExpression* b = (SExpression *)malloc(sizeof *b);
 
     if (b == NULL)
@@ -27,8 +26,7 @@ static SExpression* allocateExpression()
     return b;
 }
 
-SExpression* createNumber(int value)
-{
+SExpression* createNumber(int value) {
     SExpression* b = allocateExpression();
 
     if (b == NULL)
@@ -43,8 +41,7 @@ SExpression* createNumber(int value)
 SExpression *createOperation(
     EOperationType type,
     SExpression *left,
-    SExpression *right)
-{
+    SExpression *right) {
     SExpression* b = allocateExpression();
 
     if (b == NULL)
@@ -57,8 +54,7 @@ SExpression *createOperation(
     return b;
 }
 
-void deleteExpression(SExpression *b)
-{
+void deleteExpression(SExpression *b) {
     if (b == NULL)
         return;
 

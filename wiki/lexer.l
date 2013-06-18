@@ -22,6 +22,8 @@ LPAREN      "("
 RPAREN      ")"
 PLUS        "+"
 MULTIPLY    "*"
+AND         "&&"
+OR          "||"
 
 NUMBER      [0-9]+
 WS          [ \r\n\t]*
@@ -35,6 +37,8 @@ WS          [ \r\n\t]*
 {PLUS}          { return TOKEN_PLUS; }
 {LPAREN}        { return TOKEN_LPAREN; }
 {RPAREN}        { return TOKEN_RPAREN; }
+{AND}           { return TOKEN_AND; }
+{OR}            { return TOKEN_OR; }
 .               {  }
 
 %%

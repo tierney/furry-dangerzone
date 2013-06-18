@@ -12,14 +12,15 @@ typedef enum tagEOperationType
 {
     eVALUE,
     eMULTIPLY,
-    ePLUS
-}EOperationType;
+    ePLUS,
+    eAND,
+    eOR,
+} EOperationType;
 
 /**
  * @brief The expression structure
  */
-typedef struct tagSExpression
-{
+typedef struct tagSExpression {
     EOperationType type;///< type of operation
 
     int value;///< valid only when type is eVALUE
