@@ -6,13 +6,16 @@
  */
 
 #include "expression.h"
-#include "parser.h"
+#include "parser.hh"
 
-#include <stdio.h>
+#include <cstdio>
+#include <string>
+
+/* #define YY_DECL extern "C" int yylex() */
 
 %}
+%option outfile="lexer.cc" header-file="lexer.hh"
 
-%option outfile="lexer.c" header-file="lexer.h"
 %option warn nodefault
 
 %option reentrant noyywrap never-interactive nounistd

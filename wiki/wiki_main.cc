@@ -1,8 +1,9 @@
+#include <iostream>
+#include <cstdio>
+
 #include "expression.h"
 #include "parser.h"
-#include "lexer.h"
-
-#include <stdio.h>
+#include "lexer.hh"
 
 int yyparse(SExpression **expression, yyscan_t scanner);
 

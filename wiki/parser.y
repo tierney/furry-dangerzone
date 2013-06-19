@@ -5,16 +5,24 @@
  * To generate the parser run: "bison Parser.y"
  */
 
-#include "expression.h"
-#include "parser.h"
-#include "lexer.h"
+#include <string>
 
-static int yyerror(yyscan_t scanner,
+#include "expression.h"
+#include "parser.hh"
+#include "lexer.hh"
+
+namespace {
+int yyerror(yyscan_t scanner,
                    SExpression **expression,
                    const char *msg) {
-  fprintf(stderr,"SPECIAL Error:%s \n",msg, (*expression)->string); return 0;
+  fprintf(stderr,"SPECIAL Error:%s %s\n",msg, (*expression)->string); return 0;
 }
-
+int yyerror(
+                   SExpression **expression,
+           yyscan_t scanner,        const char *msg) {
+  fprintf(stderr,"SPECIAL Error:%s %s\n",msg, (*expression)->string); return 0;
+}
+}
 %}
 
 %code requires {
@@ -26,8 +34,8 @@ typedef void* yyscan_t;
 
 }
 
-/* %output  "parser.c" */
-/* %defines "parser.h" */
+%output  "parser.cc"
+%defines "parser.hh"
 
 %define api.pure
 %lex-param   { yyscan_t scanner }

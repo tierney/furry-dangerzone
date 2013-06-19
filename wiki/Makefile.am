@@ -1,8 +1,10 @@
 BUILT_SOURCES = parser.h
+
 AM_YFLAGS = -d
+AM_LFLAGS = -olex.yy.c
+
 bin_PROGRAMS = wiki_main
-wiki_main_SOURCES = lexer.l parser.y  wiki_main.c expression.c
-wiki_main_LDADD = -lfl
+wiki_main_SOURCES = lexer.ll parser.y wiki_main.cc expression.c
 
 clean-local:
-	-rm -f lexer.c lexer.h parser.c parser.h
+	-rm -f lexer.c lexer.cc lexer.h lexer.hh parser.c parser.cc parser.h parser.hh

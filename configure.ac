@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69.79-0bdae])
 AC_INIT([compiler], [0.1], [tierney@cs.nyu.edu])
-AC_CONFIG_SRCDIR([wiki/wiki_main.c])
+AC_CONFIG_SRCDIR([wiki/wiki_main.cc])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 

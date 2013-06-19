@@ -5,28 +5,31 @@
 #ifndef __EXPRESSION_H__
 #define __EXPRESSION_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 /**
  * @brief The operation type
  */
 typedef enum tagEOperationType {
   eSTRING,
-    eVALUE,
-    eMULTIPLY,
-    ePLUS,
-    eAND,
-    eOR,
+  eVALUE,
+  eMULTIPLY,
+  ePLUS,
+  eAND,
+  eOR,
 } EOperationType;
 
 /**
  * @brief The expression structure
  */
 typedef struct tagSExpression {
-    EOperationType type;///< type of operation
+  EOperationType type;///< type of operation
 
-    int value;///< valid only when type is eVALUE
+  int value;///< valid only when type is eVALUE
   char* string;
-    struct tagSExpression* left; ///< left side of the tree
-    struct tagSExpression* right;///< right side of the tree
+  struct tagSExpression* left; ///< left side of the tree
+  struct tagSExpression* right;///< right side of the tree
 }SExpression;
 
 /**
@@ -55,5 +58,7 @@ SExpression* createOperation(
  * @param b The expression
  */
 void deleteExpression(SExpression *b);
-
+#ifdef __cplusplus
+}
+#endif
 #endif // __EXPRESSION_H__
